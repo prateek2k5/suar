@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoojaVerse ❤️ Happy Birthday Pooja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta name="description" content="A special birthday website for Pooja - Made with love by Prateek">
+    <meta property="og:title" content="PoojaVerse ❤️ Happy Birthday Pooja">
+    <meta property="og:description" content="An interactive birthday experience">
+    <meta name="theme-color" content="#FFB6C1">
+</head>
+<body>
+    <div id="countdown-overlay">
+
+    <div class="countdown-box">
+
+        <h1>🎂 PoojaVerse</h1>
+
+        <p class="unlock-text">
+            Your surprise unlocks on
+            <strong>12 August ❤️</strong>
+        </p>
+
+        <div class="timer">
+
+            <div class="box">
+                <span id="days">00</span>
+                <small>Days</small>
+            </div>
+
+            <div class="box">
+                <span id="hours">00</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="box">
+                <span id="minutes">00</span>
+                <small>Minutes</small>
+            </div>
+
+            <div class="box">
+                <span id="seconds">00</span>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+        <p id="secret-link">
+            Already have the secret code?
+        </p>
+
+        <div id="secret-panel">
+
+            <input
+                id="secret-password"
+                type="password"
+                placeholder="Secret Code">
+
+            <button id="unlock-btn">
+
+                Unlock
+
+            </button>
+
+            <p id="wrong-pass"></p>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- LOADING SCREEN -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <!-- Animated Pig Container -->
+            <div class="loading-pig">
+                <div class="pig-body">
+                    <div class="pig-ear left"></div>
+                    <div class="pig-ear right"></div>
+                    <div class="pig-eye left">
+                        <div class="pig-pupil"></div>
+                    </div>
+                    <div class="pig-eye right">
+                        <div class="pig-pupil"></div>
+                    </div>
+                    <div class="pig-nose">
+                        <div class="pig-nostril left"></div>
+                        <div class="pig-nostril right"></div>
+                    </div>
+                    <div class="pig-cheek left"></div>
+                    <div class="pig-cheek right"></div>
+                    <div class="pig-mouth"></div>
+                </div>
+            </div>
+
+            <!-- Loading Text -->
+            <h1 class="loading-title">PoojaVerse</h1>
+            <p class="loading-subtitle" id="loading-text">Preparing something special...</p>
+
+            <!-- Progress Bar -->
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loading-progress"></div>
+            </div>
+            <p class="loading-percent" id="loading-percent">0%</p>
+
+            <!-- Floating particles -->
+            <div class="loading-particles" id="loading-particles"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- CURSOR TRAIL -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="cursor-container"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- FLOATING PARTICLES -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="particles-container"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- MUSIC PLAYER -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="music-player" class="music-player glass">
+        <div class="music-disc" id="music-disc">
+            <div class="disc-center"></div>
+            <div class="disc-groove"></div>
+        </div>
+        <div class="music-info">
+            <p class="music-title">Happy Birthday</p>
+            <p class="music-artist">For Pooja</p>
+        </div>
+        <div class="music-controls">
+            <button id="music-toggle" class="music-btn">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="music-volume">
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- PIG COMMENTARY -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="pig-commentary" class="pig-commentary glass">
+        <div class="commentary-pig">
+            <div class="mini-pig">
+                <div class="mini-pig-body">
+                    <div class="mini-pig-ear left"></div>
+                    <div class="mini-pig-ear right"></div>
+                    <div class="mini-pig-nose"></div>
+                </div>
+            </div>
+        </div>
+        <p class="commentary-text" id="commentary-text">Oink!</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- MAIN CONTENT -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <main id="main-content" style="display: none;">
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- HERO SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="hero-section" class="section hero-section">
+            <div class="hero-clouds">
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+                <div class="cloud cloud-4"></div>
+            </div>
+
+            <div class="hero-sparkles" id="hero-sparkles"></div>
+
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1500">
+                <div class="hero-card glass">
+                    <div class="hero-pig">
+                        <div class="crochet-pig">
+                            <div class="pig-main">
+                                <div class="pig-ear-crochet left"></div>
+                                <div class="pig-ear-crochet right"></div>
+                                <div class="pig-face">
+                                    <div class="pig-eye-crochet left">
+                                        <div class="pig-sparkle-eye"></div>
+                                    </div>
+                                    <div class="pig-eye-crochet right">
+                                        <div class="pig-sparkle-eye"></div>
+                                    </div>
+                                    <div class="pig-nose-crochet">
+                                        <div class="nostril"></div>
+                                        <div class="nostril"></div>
+                                    </div>
+                                    <div class="pig-blush left"></div>
+                                    <div class="pig-blush right"></div>
+                                </div>
+                                <div class="pig-body-crochet"></div>
+                                <div class="pig-leg-crochet front-left"></div>
+                                <div class="pig-leg-crochet front-right"></div>
+                                <div class="pig-leg-crochet back-left"></div>
+                                <div class="pig-leg-crochet back-right"></div>
+                                <div class="pig-tail-crochet"></div>
+                            </div>
+                            <div class="pig-crown-crochet">
+                                <span>👑</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">Welcome to</h1>
+                    <h2 class="hero-name">PoojaVerse</h2>
+                    <p class="hero-subtitle">A magical birthday journey awaits...</p>
+
+                    <button class="hero-btn glass-btn" id="open-surprise">
+                        <span class="btn-text">Open The Surprise</span>
+                        <span class="btn-sparkle">✨</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- PIG CONVERSATION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="conversation-section" class="section conversation-section" style="display: none;">
+            <div class="conversation-container glass">
+                <div class="conversation-pig">
+                    <div class="talking-pig">
+                        <div class="talking-pig-body">
+                            <div class="talking-ear left"></div>
+                            <div class="talking-ear right"></div>
+                            <div class="talking-face">
+                                <div class="talking-eye left"></div>
+                                <div class="talking-eye right"></div>
+                                <div class="talking-nose">
+                                    <div class="talking-nostril"></div>
+                                    <div class="talking-nostril"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="speech-bubble glass" id="speech-bubble">
+                        <p id="conversation-text">Loading...</p>
+                    </div>
+                </div>
+                <div class="conversation-progress">
+                    <div class="progress-dots" id="progress-dots"></div>
+                </div>
+                <button class="conversation-next glass-btn" id="conversation-next">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- VERIFICATION SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="verification-section" class="section verification-section" style="display: none;">
+            <div class="verification-container glass">
+                <div class="verification-pig">
+                    <div class="suspicious-pig">
+                        <div class="suspicious-body">
+                            <div class="suspicious-ear left"></div>
+                            <div class="suspicious-ear right"></div>
+                            <div class="suspicious-face">
+                                <div class="suspicious-eye left">
+                                    <div class="suspicious-eyebrow"></div>
+                                </div>
+                                <div class="suspicious-eye right">
+                                    <div class="suspicious-eyebrow"></div>
+                                </div>
+                                <div class="suspicious-nose"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="verification-title" id="verification-title">Are You a Suar?</h2>
+
+                <div class="verification-message glass" id="verification-message">
+                    <p id="verification-text">Be honest... 🐷</p>
+                </div>
+
+                <div class="verification-buttons">
+                    <button class="verify-btn yes-btn" id="yes-btn">
+                        <span>YES!</span>
+                        <span>🐷</span>
+                    </button>
+                    <button class="verify-btn no-btn" id="no-btn">
+                        NO!
+                    </button>
+                </div>
+
+                <div class="attempt-counter" id="attempt-counter">
+                    Attempts: <span id="attempt-count">0</span>/40
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- PORTAL SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="portal-section" class="section portal-section" style="display: none;">
+            <div class="portal-container">
+                <div class="portal-glow"></div>
+                <div class="portal-ring outer"></div>
+                <div class="portal-ring middle"></div>
+                <div class="portal-ring inner"></div>
+                <div class="portal-center">
+                    <span>✨</span>
+                </div>
+                <div class="portal-particles" id="portal-particles"></div>
+            </div>
+            <p class="portal-text">Entering PoojaVerse...</p>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- BIRTHDAY HERO -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="birthday-section" class="section birthday-section" style="display: none;">
+            <div class="birthday-particles" id="birthday-particles"></div>
+
+            <div class="birthday-content" data-aos="zoom-in" data-aos-duration="2000">
+                <div class="birthday-decorations">
+                    <span class="balloon">🎈</span>
+                    <span class="balloon">🎈</span>
+                    <span class="balloon">🎈</span>
+                </div>
+
+                <h1 class="birthday-title">
+                    <span class="title-line">Happy Birthday</span>
+                    <span class="title-name">Pooja</span>
+                    <span class="title-heart">❤️</span>
+                </h1>
+
+                <h2 class="birthday-subtitle">
+                    <span>My Favourite Suar</span>
+                    <span class="pig-emoji">🐷</span>
+                </h2>
+
+                <div class="birthday-sparkles">
+                    <span>✨</span>
+                    <span>✨</span>
+                    <span>✨</span>
+                </div>
+            </div>
+
+            <div class="scroll-down">
+                <span>Scroll to explore ↓</span>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- LETTER SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="letter-section" class="section letter-section">
+            <h2 class="letter-title">💌 A Letter To My Favourite Suar 🐷</h2>
+
+            <div class="letter-container" data-aos="fade-up" data-aos-delay="300">
+                <div class="letter-envelope" id="letter-envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+
+    <div class="wax-seal" id="waxSeal">
+        ❤️
+    </div>
+
+</div>
+                </div>
+
+                <div class="letter-paper" id="letter-paper" style="display: none;">
+                    <div class="paper-texture"></div>
+                    <div class="letter-content" id="letter-content">
+                        <!-- Letter content will be typed here -->
+                    </div>
+                    <div class="letter-signature">
+                        <p class="signature-text">With all my love,</p>
+                        <p class="signature-name">Prateek</p>
+                        <span class="signature-heart">❤️</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- PHOTO GALLERY -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="gallery-section" class="section gallery-section">
+            <h2 class="gallery-title" data-aos="fade-up">Memories 📸</h2>
+            <p class="gallery-subtitle" data-aos="fade-up" data-aos-delay="100">Captured moments with my favourite person</p>
+
+            <div class="gallery-grid" id="gallery-grid">
+                <div class="polaroid" data-aos="fade-up" data-aos-delay="100" style="--rotation: -3deg;">
+                    <div class="polaroid-image" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                        <img src="assets/images/pooja5.jpg" alt="Pooja">
+                    </div>
+                    <p class="polaroid-caption">My Suar</p>
+                </div>
+
+                <div class="polaroid" data-aos="fade-up" data-aos-delay="200" style="--rotation: 2deg;">
+                    <div class="polaroid-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                        <img src="assets/images/pooja2.png" alt="Pooja">
+                    </div>
+                    <p class="polaroid-caption">The prettiest smile ❤️</p>
+                </div>
+
+                <div class="polaroid" data-aos="fade-up" data-aos-delay="300" style="--rotation: -2deg;">
+                    <div class="polaroid-image" style="background: linear-gradient(135deg, #d299c2, #fef9d7);">
+                        <img src="assets/images/pooja3.png" alt="Pooja">
+                    </div>
+                    <p class="polaroid-caption">Pushup Queen</p>
+                </div>
+
+                <div class="polaroid" data-aos="fade-up" data-aos-delay="400" style="--rotation: 3deg;">
+                    <div class="polaroid-image" style="background: linear-gradient(135deg, #fbc2eb, #a6c1ee);">
+                        <img src="assets/images/pooja4.jpg" alt="Pooja">
+                    </div>
+                    <p class="polaroid-caption">Supercalifragilisticexpialidocious</p>
+                </div>
+
+                <div class="polaroid" data-aos="fade-up" data-aos-delay="500" style="--rotation: -1deg;">
+                    <div class="polaroid-image" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <img src="assets/images/pooja1.png" alt="Pooja">
+                    </div>
+                    <p class="polaroid-caption">Maybe Cute</p>
+                </div>
+
+                <div class="polaroid" data-aos="fade-up" data-aos-delay="600" style="--rotation: 2deg;">
+                    <div class="polaroid-image" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                        <img src="assets/images/pooja6.png" alt="Pooja">
+                    </div>
+                    <p class="polaroid-caption">Bhaut bolte he</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- CAKE SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="cake-section" class="section cake-section">
+            <h2 class="cake-title" data-aos="fade-up">Make a Wish! 🎂</h2>
+            <p class="cake-subtitle" data-aos="fade-up" data-aos-delay="100">Click the cake to blow the candles!</p>
+
+            <div class="cake-container" data-aos="zoom-in" data-aos-delay="200">
+                <div class="cake" id="cake">
+                    <div class="cake-plate"></div>
+                    <div class="cake-layer bottom"></div>
+                    <div class="cake-layer middle"></div>
+                    <div class="cake-layer top"></div>
+                    <div class="cake-frosting"></div>
+                    <div class="candles">
+                        <div class="candle" id="candle-1">
+                            <div class="candle-stick"></div>
+                            <div class="candle-flame"></div>
+                        </div>
+                        <div class="candle" id="candle-2">
+                            <div class="candle-stick"></div>
+                            <div class="candle-flame"></div>
+                        </div>
+                        <div class="candle" id="candle-3">
+                            <div class="candle-stick"></div>
+                            <div class="candle-flame"></div>
+                        </div>
+                    </div>
+                    <div class="cake-decoration">
+                        <span class="cherry">🍒</span>
+                    </div>
+                </div>
+
+                <div class="cake-sparkles" id="cake-sparkles"></div>
+            </div>
+
+            <div class="wish-message glass" id="wish-message" style="display: none;">
+                <p>✨ May all your wishes come true! ✨</p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- ANALYTICS SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="analytics-section" class="section analytics-section">
+            <h2 class="analytics-title" data-aos="fade-up">Pooja Statistics 📊</h2>
+            <p class="analytics-subtitle" data-aos="fade-up" data-aos-delay="100">Scientifically accurate data*</p>
+
+            <div class="analytics-grid">
+                <div class="analytics-card glass" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">💖</div>
+                    <div class="stat-info">
+                        <h3>Sweetness</h3>
+                        <div class="stat-bar">
+                            <div class="stat-fill" data-width="100"></div>
+                        </div>
+                        <p class="stat-value">100%</p>
+                    </div>
+                </div>
+
+                <div class="analytics-card glass" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">😤</div>
+                    <div class="stat-info">
+                        <h3>Bullying Prateek</h3>
+                        <div class="stat-bar bullying">
+                            <div class="stat-fill" data-width="100"></div>
+                        </div>
+                        <p class="stat-value">1000%</p>
+                    </div>
+                </div>
+
+                <div class="analytics-card glass" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-icon">🌸</div>
+                    <div class="stat-info">
+                        <h3>Cuteness</h3>
+                        <div class="stat-bar cuteness">
+                            <div class="stat-fill infinity" data-width="100"></div>
+                        </div>
+                        <p class="stat-value infinity">∞ Infinity</p>
+                    </div>
+                </div>
+
+                <div class="analytics-card glass" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-icon">😎</div>
+                    <div class="stat-info">
+                        <h3>Attitude</h3>
+                        <div class="stat-bar attitude">
+                            <div class="stat-fill" data-width="99"></div>
+                        </div>
+                        <p class="stat-value">999%</p>
+                    </div>
+                </div>
+
+                <div class="analytics-card glass" data-aos="fade-up" data-aos-delay="500">
+                    <div class="stat-icon">🐷</div>
+                    <div class="stat-info">
+                        <h3>Suar Level</h3>
+                        <div class="stat-bar suar">
+                            <div class="stat-fill" data-width="100"></div>
+                        </div>
+                        <p class="stat-value">Maximum!</p>
+                    </div>
+                </div>
+
+                <div class="analytics-card glass" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-icon">❤️</div>
+                    <div class="stat-info">
+                        <h3>My Love</h3>
+                        <div class="stat-bar love">
+                            <div class="stat-fill" data-width="100"></div>
+                        </div>
+                        <p class="stat-value">Beyond Measure</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="analytics-disclaimer" data-aos="fade-up">*All data is 100% true and verified by the Pig Research Institute</p>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- CERTIFICATE SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="certificate-section" class="section certificate-section">
+            <h2 class="certificate-title" data-aos="fade-up">Official Award 🏆</h2>
+
+            <div class="certificate-container" data-aos="zoom-in" data-aos-delay="200">
+                <div class="certificate glass">
+                    <div class="certificate-border">
+                        <div class="certificate-header">
+                            <span class="certificate-stars">⭐ ⭐ ⭐</span>
+                            <h2>Certificate of Excellence</h2>
+                            <span class="certificate-stars">⭐ ⭐ ⭐</span>
+                        </div>
+
+                        <div class="certificate-pig">
+                            <span>🐷👑</span>
+                        </div>
+
+                        <div class="certificate-content">
+                            <p class="certificate-intro">This certifies that</p>
+                            <h3 class="certificate-name">Pooja</h3>
+                            <p class="certificate-award">is officially recognized as</p>
+                            <h4 class="certificate-title-award">The World's Cutest Suar</h4>
+                            <p class="certificate-desc">For being incredibly adorable, annoyingly sweet, and perfectly imperfect in every way.</p>
+                        </div>
+
+                        <div class="certificate-footer">
+                            <div class="certificate-seal">
+                                <div class="seal-outer"></div>
+                                <div class="seal-inner">
+                                    <span>🐷</span>
+                                </div>
+                            </div>
+                            <div class="certificate-signature">
+                                <div class="signature-line"></div>
+                                <p>Prateek</p>
+                                <p class="signature-title">Chief Suar Officer</p>
+                            </div>
+                            <div class="certificate-ribbon">
+                                <div class="ribbon-left"></div>
+                                <div class="ribbon-right"></div>
+                            </div>
+                        </div>
+
+                        <div class="certificate-date">
+                            <p>Issued on: <span id="certificate-date"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- MINI GAME -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="game-section" class="section game-section">
+            <h2 class="game-title" data-aos="fade-up">Catch The Pig! 🐷</h2>
+            <p class="game-subtitle" data-aos="fade-up" data-aos-delay="100">Click on the pig 3 times to win!</p>
+
+            <div class="game-container glass" data-aos="fade-up" data-aos-delay="200">
+                <div class="game-stats">
+                    <p>Catches: <span id="catch-count">0</span>/3</p>
+                </div>
+
+                <div class="game-area" id="game-area">
+                    <div class="game-pig" id="game-pig">
+                        <div class="running-pig">
+                            <div class="running-body">
+                                <div class="running-ear left"></div>
+                                <div class="running-ear right"></div>
+                                <div class="running-nose"></div>
+                                <div class="running-tail"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="game-start-btn glass-btn" id="game-start">
+                    Start Game!
+                </button>
+
+                <div class="game-win-message" id="game-win" style="display: none;">
+                    <p>🎉 You Won! 🎉</p>
+                    <p>You're officially faster than a pig!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- ENDING SECTION -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section id="ending-section" class="section ending-section">
+            <div class="ending-night"></div>
+            <div class="ending-stars" id="ending-stars"></div>
+            <div class="ending-moon"></div>
+
+            <div class="ending-fireflies" id="ending-fireflies"></div>
+
+            <div class="ending-content" data-aos="fade-up">
+                <div class="ending-pig">
+                    <div class="walking-pig">
+                        <div class="walking-body">
+                            <div class="walking-ear left"></div>
+                            <div class="walking-ear right"></div>
+                            <div class="walking-face">
+                                <div class="walking-eye left"></div>
+                                <div class="walking-eye right"></div>
+                                <div class="walking-nose"></div>
+                            </div>
+                            <div class="walking-cake">🎂</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ending-text glass">
+                    <h2>Thank You</h2>
+                    <p>For being the best suar in the world.</p>
+                    <p>For every laugh, every fight, every moment.</p>
+                    <p>For being you.</p>
+                    <p class="ending-love">With love.... ❤️</p>
+                    <p class="ending-signed">- Prateek</p>
+                </div>
+
+                <button class="replay-btn glass-btn" id="replay-btn">
+                    🔄 Replay Journey
+                </button>
+            </div>
+
+            <div class="ending-fireworks" id="ending-fireworks"></div>
+        </section>
+
+    </main>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="assets/music/august.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Easter Egg Display -->
+    <div id="easter-egg-display" class="easter-egg-display"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    <script src="countdown.js"></script>
+</body>
+</html>
